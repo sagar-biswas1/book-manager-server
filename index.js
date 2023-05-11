@@ -1,8 +1,11 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
 const path = require("path");
 const cors = require("cors");
+
 const multer = require("multer");
+const port = process.env.PORT || 5555;
 app.use(express.json());
 app.use(cors());
 var fs = require("fs");
@@ -84,6 +87,6 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(4000, () => {
+app.listen(port, () => {
   console.log("Server started on port 4000");
 });
