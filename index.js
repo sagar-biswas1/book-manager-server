@@ -54,8 +54,10 @@ const upload = multer({
 });
 
 app.get('/doc',(req,res)=>{
-    const x = `uploads/cv-of-sagar-biswas-2.pdf-1683793736893.pdf`;
-   const stream = fs.createReadStream(x);
+  const queryPath= req.query.path
+  //console.log(queryPath)
+    //const x = `uploads\\javascript_problems.pdf-1683805268110.pdf`;
+   const stream = fs.createReadStream(queryPath);
   stream.pipe(res);
 })
 
@@ -64,12 +66,8 @@ app.get("/", (req, res) => {res.send("hello")});
 
 
 app.post("/upload", upload.single("bookPDF"), (req, res) => {
-  // Handle the uploaded file here
-  console.log(49,req.file);
-  const x= req.file.path
-  console.log(x)
-
-   res.json("File uploaded successfully");
+  const filePath= req.file.path
+   res.json({ filePath, message:"successfully uploaded..." });
 });
 
 
